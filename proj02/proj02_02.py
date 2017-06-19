@@ -10,4 +10,13 @@ previous two numbers in the sequence. The sequence looks like this:
 1, 1, 2, 3, 5, 8, 13...
 """
 
+print "!Fibonacci number generator!"
+
+aon= raw_input("How many Fibonacci numbers do you want?: ")
+
+fnum1=1
+
+
+for fnum1 in (0, int(aon)):
+    fnum1=1
 

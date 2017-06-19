@@ -9,14 +9,21 @@
 
 name = raw_input("Enter your name: ")
 age = int(raw_input("Enter your age: "))
-birthday = raw_input("Has your birthday happened this year? Enter Y or N: ")
 
-if birthday == "Y":
-    # Calculates the year that the user will be 100
-    year_100 = str((100 - age) + 2017)
+if age>100:
+    print "This won't work at all now, good job...."
 
+bday = raw_input("Has your birthday happened this year? Enter Y or N: ")
+
+if bday == "Y":
+    year = 2017
 else:
-    # Calculates the year that the user will be 100
-    year_100 = str((100 - age) + 2016)
+    year = 2016
 
-print name, " will turn 100 in the year ", year_100, "."
+year2= year
+
+while 100 - age + year > year2:
+    print str(year2)
+    year2= year2 +1
+
+print name, "will turn 100 in the year ", year2,"."
