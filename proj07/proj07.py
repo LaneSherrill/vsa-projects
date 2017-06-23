@@ -77,7 +77,36 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     # TO DO...
-    
+
+def get_word_score(word, n):
+    createdword = []
+    print word
+    score=0
+    i = -1
+    length = len(word)
+    for letters in word:
+        createdword.append(letters)
+    for letters in word:
+        for keys in word:
+            if keys==createdword[i]:
+                i=i+1
+                score=score+SCRABBLE_LETTER_VALUES[str(createdword[i])]
+            if i==length-1:
+                    break
+    score= score*length
+    if length == n:
+        score = score + 50
+        print "You used whole hand"
+    print "The score for this word is", score
+    return score
+
+#word = "hello, my name is monty python"
+#n = HANDSIZE (7)
+
+get_word_score('gawk', 7)
+
+
+
 #
 # Make sure you understand how this function works and what it does!
 #
@@ -146,6 +175,17 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ...
+    for letters in hand:
+        if letters in word:
+            hand[letters] = hand[letters]-1
+            if letters in word>0:
+                hand[letters] = hand[letters]-1
+
+    return hand
+
+
+
+
 
 #
 # Problem #3: Test word validity
@@ -228,3 +268,6 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
+
+
+
