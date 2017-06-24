@@ -58,28 +58,11 @@ def test_deal_hand():
         return # exit function
     
     print "SUCCESS: test_deal_hand()"
-n=7
-generatedWord="ratings"
-def get_word_score(word, letters):
-    list=[]
-    print word
-    a=0
-    b=1
-    length=len(generatedWord)
-    for letters in word:
-        letters=SCRABBLE_LETTER_VALUES
-        list.append(letters)
-        variable=list[a]+list[b]
-        a=variable
-        b=b+1
-    score=variable*length
-    if length==HAND_SIZE:
-        score=score+50
-word=generatedWord
-letters=7
-get_word_score(word, letters)
-#Unit test for get_word_score
-"""
+
+def test_get_word_score():
+    """
+    Unit test for get_word_score
+    """
     failure=False
     # dictionary of words and scores
     words = {("", 7):0, ("it", 7):4, ("was", 7):18, ("scored", 7):54, ("waybill", 7):155, ("outgnaw", 7):127, ("outgnawn", 8):146}
@@ -94,8 +77,8 @@ get_word_score(word, letters)
 
 def test_update_hand():
     """
-#Unit test for update_hand
-"""
+    Unit test for update_hand
+    """
     # test 1
     hand = {'a':1, 'q':1, 'l':2, 'm':1, 'u':1, 'i':1}
     word = "quail"
@@ -139,8 +122,8 @@ def test_update_hand():
 
 def test_is_valid_word(word_list):
     """
-    #Unit test for is_valid_word
-"""
+    Unit test for is_valid_word
+    """
     failure=False
     # test 1
     word = "hello"

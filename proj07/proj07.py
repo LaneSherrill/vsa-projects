@@ -97,7 +97,7 @@ def get_word_score(word, n):
     if length == n:
         score = score + 50
         print "You used whole hand"
-    print "The score for this word is", score
+    print "The score for your word", word,"is",score,"."
     return score
 
 #word = "hello, my name is monty python"
@@ -175,15 +175,16 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     # TO DO ...
-    for letters in hand:
-        if letters in word:
-            hand[letters] = hand[letters]-1
-            if letters in word>0:
-                hand[letters] = hand[letters]-1
-
-    return hand
-
-
+    x = hand.copy()
+    for letters in word:
+        #print "letters equals", letters
+        if letters in x:
+            x[letters] = x[letters] - 1
+            #print "letters equals", letters
+    display_hand(x)
+            # if hand[letters]!=0:
+            # hand[letters] = hand[letters] - 1
+    return x
 
 
 
@@ -191,6 +192,7 @@ def update_hand(hand, word):
 # Problem #3: Test word validity
 #
 def is_valid_word(word, hand, word_list):
+    y=hand.copy()
     """
     Returns True if word is in the word_list and is entirely
     composed of letters in the hand. Otherwise, returns False.
@@ -201,6 +203,21 @@ def is_valid_word(word, hand, word_list):
     word_list: list of lowercase strings
     """
     # TO DO...
+    worddict=get_frequency_dict(word)
+    if word in word_list:
+        for key in word:
+            if y.get(key,0) < worddict.get(key,0):
+            #if letters in hand[key]< letters in word[key]:
+                print "The word you entered is not a valid word."
+                return False
+            else:
+                print "The word you entered has been confirmed as valid."
+                return True
+
+    else:
+        print "The word you entered is not a valid word."
+        return False
+
 
 def calculate_handlen(hand):
     handlen = 0
@@ -240,6 +257,20 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
+
+    display_hand(hand)
+    word= raw_input("Enter any word you can make with your hand: ")
+    while is_valid_word(word, hand, word_list)==False:
+        display_hand(hand)
+        newword = word
+        word = raw_input("Enter a word in the English Scrabble Dictionary you idiot, and make sure to use the letters in YOUR hand.: ")
+    get_word_score(word, n)
+    update_hand(hand, word)
+
+n= HAND_SIZE
+hand= deal_hand(n)
+word_list = load_words()
+play_hand(hand, word_list)
 
 #
 # Problem #5: Playing a game
