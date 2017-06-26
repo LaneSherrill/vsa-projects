@@ -29,14 +29,14 @@ def load_words():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print "Loading word list from file..."
+    #print "Loading word list from file..."
     # inFile: file
     inFile = open(WORDLIST_FILENAME, 'r', 0)
     # wordlist: list of strings
     wordlist = []
     for line in inFile:
         wordlist.append(line.strip().lower())
-    print "  ", len(wordlist), "words loaded."
+    #print "  ", len(wordlist), "words loaded."
     return wordlist
 
 def get_frequency_dict(sequence):
@@ -80,7 +80,6 @@ def get_word_score(word, n):
 
 def get_word_score(word, n):
     createdword = []
-    print word
     score=0
     i = -1
     length = len(word)
@@ -97,13 +96,13 @@ def get_word_score(word, n):
     if length == n:
         score = score + 50
         print "You used whole hand"
-    print "The score for your word", word,"is",score,"."
+    #print "The score for your word", word,"is",score,"."
     return score
 
 #word = "hello, my name is monty python"
 #n = HANDSIZE (7)
 
-get_word_score('gawk', 7)
+
 
 
 
@@ -181,7 +180,7 @@ def update_hand(hand, word):
         if letters in x:
             x[letters] = x[letters] - 1
             #print "letters equals", letters
-    display_hand(x)
+    #display_hand(x)
             # if hand[letters]!=0:
             # hand[letters] = hand[letters] - 1
     return x
@@ -208,14 +207,14 @@ def is_valid_word(word, hand, word_list):
         for key in word:
             if y.get(key,0) < worddict.get(key,0):
             #if letters in hand[key]< letters in word[key]:
-                print "The word you entered is not a valid word."
+                #print "The word you entered is not a valid word."
                 return False
             else:
-                print "The word you entered has been confirmed as valid."
+                #print "The word you entered has been confirmed as valid."
                 return True
 
     else:
-        print "The word you entered is not a valid word."
+       #print "The word you entered is not a valid word."
         return False
 
 
@@ -229,7 +228,7 @@ def calculate_handlen(hand):
 # Problem #4: Playing a hand
 #
 def play_hand(hand, word_list):
-
+    wordb=0
     """
     Allows the user to play the given hand, as follows:
 
@@ -257,20 +256,40 @@ def play_hand(hand, word_list):
       
     """
     # TO DO ...
-
-    display_hand(hand)
-    word= raw_input("Enter any word you can make with your hand: ")
-    while is_valid_word(word, hand, word_list)==False:
+    SCRABBLE_LETTER_VALUES['.']=0
+    totalscore=0
+    while wordb !=".":
+        print 'If you cannot make any words, type "."'
         display_hand(hand)
-        newword = word
-        word = raw_input("Enter a word in the English Scrabble Dictionary you idiot, and make sure to use the letters in YOUR hand.: ")
-    get_word_score(word, n)
-    update_hand(hand, word)
-
-n= HAND_SIZE
-hand= deal_hand(n)
-word_list = load_words()
-play_hand(hand, word_list)
+        word= raw_input("Enter any word you can make with your hand: ")
+        wordb=word
+        if word==".":
+            break
+        else:
+            while is_valid_word(word, hand, word_list)==False:
+                if word==".":
+                    break
+                else:
+                    #display_hand(hand)
+                    newword = word
+                    word = raw_input("Enter a word in the English Scrabble Dictionary you idiot, and make sure to use the letters in YOUR hand.: ")
+            if get_word_score(word, n) == 0:
+                break
+            get_word_score(word, n)
+            #print "getscore equals"
+            update_hand(hand, word)
+            #print"update hand equals"
+            hand= update_hand(hand,word)
+            #print "hand equals"
+            totalscore=get_word_score(word,n)+totalscore
+            print "Score for this word was:", get_word_score(word,n),". Your score so far is:",totalscore
+    print "Your final score was:", totalscore
+#
+# n= HAND_SIZE
+# hand= deal_hand(n)
+# g=hand.copy
+# word_list = load_words()
+# play_hand(hand, word_list)
 
 #
 # Problem #5: Playing a game
@@ -292,6 +311,22 @@ def play_game(word_list):
     * If the user inputs anything else, ask them again.
     """
     # TO DO...
+    x=0
+    n=HAND_SIZE
+    hand = deal_hand(n)
+    play_hand(hand, word_list)
+    while x!="e":
+        x = raw_input("Enter n to play a new game, r to replay the last hand, and e to exit the game: ")
+        if x=="r":
+            play_hand(hand, word_list)
+        elif x=="n":
+            hand=deal_hand(n)
+            play_hand(hand, word_list)
+        elif x=="e":
+            print "Game exited"
+            break
+        else: x=raw_input("Please respond with n to play a new game, r to replay the last hand, or e to exit the game:")
+
 
 #
 # Build data structures used for entire session and play game
