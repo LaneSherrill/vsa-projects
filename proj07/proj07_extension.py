@@ -13,6 +13,10 @@ from perm import *
 # Problem #6A: Computer chooses a word
 #
 #
+n= 7
+hand= deal_hand(n)
+print get_perms(hand,n)
+
 def comp_choose_word(hand, word_list):
     """
 	Given a hand and a word_dict, find the word that gives the maximum value score, 
@@ -23,6 +27,11 @@ def comp_choose_word(hand, word_list):
     word_list: list (string)
     """
     # TO DO...
+correctwords={}
+for words in get_perms(hand, n):
+    if is_valid_word(word, hand, word_list)==True:
+        correctwords.append(words)
+
 
 #
 # Problem #6B: Computer plays a hand
@@ -80,5 +89,7 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
+
+
 
     

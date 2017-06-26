@@ -283,9 +283,11 @@ def play_hand(hand, word_list):
             #print "hand equals"
             totalscore=get_word_score(word,n)+totalscore
             print "Score for this word was:", get_word_score(word,n),". Your score so far is:",totalscore
+            print " "
+    print " "
     print "Your final score was:", totalscore
-#
-# n= HAND_SIZE
+    print " "
+n= HAND_SIZE
 # hand= deal_hand(n)
 # g=hand.copy
 # word_list = load_words()
