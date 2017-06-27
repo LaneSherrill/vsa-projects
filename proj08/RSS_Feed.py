@@ -69,6 +69,7 @@ class NewsStory(object):
 
 
 
+
 #======================
 # Part 2
 # Triggers
@@ -82,22 +83,43 @@ class Trigger(object):
         """
         raise NotImplementedError
 
+
 # Whole Word Triggers
 # Problems 2-5
+class wordtrigger(Trigger):
+    def __init__(self, word):
+        self.word = word.lower()
 
-# TODO: WordTrigger
-
-
+    # TODO: WordTrigger
+    def is_word_in(self, str):
+        for character in string.punctuation:
+            str = str.replace(character, ' ')
+        str = str.lower()
+        string1 = str.split(" ")
+        if self.word in string1:
+            return True
+        else:
+            return False
 # TODO: TitleTrigger
+class TitleTrigger(wordtrigger):
+    def evaluate(self, story):
+        return self.is_word_in(story.get_title())
 # TODO: SubjectTrigger
+class SubjectTrigger(wordtrigger):
+    def evaluate(self, story):
+        return self.is_word_in(story.get_subject())
 # TODO: SummaryTrigger
-
+class SummaryTrigger(wordtrigger):
+    def evaluate(self, story):
+        return self.is_word_in(story.get_summary())
 
 # Composite Triggers
 # Problems 6-8
 
 # TODO: NotTrigger
+
 # TODO: AndTrigger
+
 # TODO: OrTrigger
 
 
