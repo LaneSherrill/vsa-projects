@@ -19,14 +19,14 @@ def load_words():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    print "Loading word list from file..."
+    #print "Loading word list from file..."
     # inFile: file
     inFile = open(WORDLIST_FILENAME, 'r', 0)
     # line: string
     line = inFile.readline()
     # wordlist: list of strings
     wordlist = string.split(line)
-    print "  ", len(wordlist), "words loaded."
+    #print "  ", len(wordlist), "words loaded."
     return wordlist
 
 def choose_word(wordlist):
@@ -54,8 +54,155 @@ def intersection (listc,word):
     for item in word:
         new_list.append(item)
         newlength=newlength-1
-        #if newlength==0:
 
+
+def hangmanart(num_guess, word):
+    if num_guess == len(word):
+        print '       0000000000000000000000     '
+        print '       0                         '
+        print '       0                      '
+        print '       0                     '
+        print '       0                      '
+        print '       0                         '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                        '
+        print '       0                        '
+        print '       0                        '
+        print '       0                    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == len(word) - 1:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                         '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                      '
+        print '       0                        '
+        print '       0                        '
+        print '       0                        '
+        print '       0                    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == len(word) - 2:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                    1     '
+        print '       0                   111    '
+        print '       0                   222   '
+        print '       0                   222   '
+        print '       0                   222   '
+        print '       0                   222   '
+        print '       0                        '
+        print '       0                        '
+        print '       0                        '
+        print '       0                    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == len(word) / 2:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                    1     '
+        print '       0                   111    '
+        print '       0                  1222   '
+        print '       0                 1 222   '
+        print '       0                1  222   '
+        print '       0                1  222   '
+        print '       0                        '
+        print '       0                        '
+        print '       0                        '
+        print '       0                    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == len(word) / 2 - 1:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                    1     '
+        print '       0                   111    '
+        print '       0                  12221   '
+        print '       0                 1 222 1  '
+        print '       0                1  222  1 '
+        print '       0                1  222  1 '
+        print '       0                        '
+        print '       0                        '
+        print '       0                        '
+        print '       0                    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == len(word) / 2 - 2:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                    1     '
+        print '       0                   111    '
+        print '       0                  12221   '
+        print '       0                 1 222 1  '
+        print '       0                1  222  1 '
+        print '       0                1  222  1 '
+        print '       0                   1     '
+        print '       0                  1      '
+        print '       0                  1      '
+        print '       0                111    '
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
+
+    if num_guess == 0:
+        print '       0000000000000000000000     '
+        print '       0                    0     '
+        print '       0                   111    '
+        print '       0                  1o1o1   '
+        print '       0                   111    '
+        print '       0                    1     '
+        print '       0                   111    '
+        print '       0                  12221   '
+        print '       0                 1 222 1  '
+        print '       0                1  222  1 '
+        print '       0                1  222  1 '
+        print '       0                   1 1    '
+        print '       0                  1   1   '
+        print '       0                  1   1   '
+        print '       0                111    111'
+        print '       0                          '
+        print '       0                          '
+        print '       0                          '
+        print '000000000000000                   '
 
 def hangman():
     indexnum=0
@@ -63,16 +210,22 @@ def hangman():
     listc=[]
     wronglist=[]
     alphalist= ["a","b","c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    print "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+    print ""
     print "Welcome to hangman"
-    #word=choose_word(wordlist)
+    print ""
     word = list(choose_word(wordlist))
-    #print word
     print"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
     num_guess=len(word)
     length=len(word)
-    LIST = [len(word) * "_ "]  #####
-    print "The word is", length,"letters long. You have", length, "guesses."
-    for x in range(0,int(length)): #**********
+    LIST = [len(word) * "_ "]
+    if len(word)<=6:
+        print "The word is pretty easy and its only", length,"letters long. You have", length, "guesses."
+    elif 6<len(word)<8:
+        print "This is a medium difficulty word and only", length,"letters long. You have", length, "guesses."
+    elif 8<=len(word):
+        print "The word is very difficult and its", length,"letters long. You have", length, "guesses."
+    for x in range(0,int(length)):
                  listc.append("_ ")
     while num_guess!=0:
                 guess = raw_input("Guess a letter: ")
@@ -80,26 +233,14 @@ def hangman():
                 if guess in alphalist:
                     if guess in word:
                         print guess,"is in this word."
-                        #listc.append(guess)
-                        #print listc
                         if listc == word:
                             print "correct letters=", listc
                             print "wrong letters=", wronglist
                             intersection(listc, word)
-                       #WHERE THE LETTER IS LOCATED, CODE  (INC)
                         for num in range(0,len(word)):
                             indexnum=num
-                            #print indexnum
-                            # If statement isnt working
-                            #print listc[indexnum]
-                            #print word[indexnum]
                             if guess == word[indexnum]:
                                     listc[indexnum]=guess
-                        #print "listc =",listc
-
-
-
-
                     elif guess in listc:
                         print "You already guessed this. Please guess again."
                     elif guess in wronglist:
@@ -108,6 +249,7 @@ def hangman():
                         print guess, "was not correct."
                         wronglist.append(guess)
                         num_guess=num_guess-1
+                        hangmanart(num_guess, word)
                 else:
                     print "Your guess was either capitalized, more than one letter, or it is not in the alphabet. Guess again."
 
@@ -125,21 +267,39 @@ def hangman():
                 print"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 if listc==word:
                     print"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
-                    print"  Y                   "
-                    print"      O                   "
-                    print"          U                   "
-                    print"  W                   "
-                    print"      O                   "
-                    print"          N                   "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n          "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n              "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n                  "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n          "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n              "
+                    print"  Y   o   u       W   o   n           Y   o   u       W   o   n                  "
                     print"--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
                     break
+
 hangman()
 
 
-#for guess in word:
-                           #counter=counter+1
-                            #if counter>2 or counter==2:
-                                #print guess,"is in the word multiple times."
-                                #listc.append(guess)
-                                #print listc
-                            #counter=0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
